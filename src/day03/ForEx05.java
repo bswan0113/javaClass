@@ -14,7 +14,7 @@ public class ForEx05 {
 		for(i=1; i<=10; i++) {
 			
 			sum +=i;
-			System.out.println(1 + "부터" + i + "의 합은" + sum );
+			System.out.println(1 + "부터 " + i + "의 합은 " + sum );
 		} // 시그마
 		
 		System.out.println(sum);
