@@ -24,7 +24,7 @@ public class ArrayEx02 {
 		
 	for(int tmp : arr) {
 		arr[tmp] =tmp;
-		System.out.println(tmp + " ");
+		System.out.println(arr[tmp] + " ");
 	}
 
 	}
