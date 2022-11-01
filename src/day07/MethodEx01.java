@@ -1,6 +1,6 @@
 package day07;
 
-public class MethoEx01 {
+public class MethodEx01 {
 
 	public static void main(String[] args) {
 		
