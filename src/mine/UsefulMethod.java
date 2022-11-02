@@ -41,6 +41,15 @@ public class UsefulMethod {
 			arr[i]=(int)(Math.random()*(max-min+1)+min);
 		}
 	}
-
+	//배열에 특정 수가 있으면 true를 반환
+	public static boolean contains(int arr[], int num) {
+		
+		int i=0;
+		for(;i<arr.length;i++) {
+			if(arr[i]==num) {
+				return true;}
+								}				
+	return false;
+													}
 
 }
