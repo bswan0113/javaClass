@@ -32,7 +32,7 @@ public class MethodBaseballGameEx01 {
 			System.out.print(tmp + " ");
 		}
 		int []player = new int[size];
-	int strike=size+1, ball, judge;
+	int strike=size+1, ball;
 		while(strike!=size) {
 			System.out.println("숫자를 입력하세요.");
 			for(int i=0; i<player.length;i++) {
@@ -40,8 +40,8 @@ public class MethodBaseballGameEx01 {
 				}
 			strike =strike(newGame,player);
 			ball=ball(newGame,player);				
-			judge= judge(ball, strike, size);
-			playGame(ball,strike,judge);}
+			
+			playGame(ball,strike,size);}
 
 		
 
@@ -136,33 +136,27 @@ public class MethodBaseballGameEx01 {
  * 	매서드명 : judge
  * */
 
-	public static int judge(int ball, int strike, int size) {
-	 int judge;
-		if(ball==0 && strike==0) {
-			return judge=0;
-		}
-		else if(strike==size) {
-			return judge=1;
-		}
-		else {
-		return judge=2;}
-	}
+	
 
 /*	기능 : 메서드 ball과 strike, judge의 값을 입력받아 S,B,O를 출력하는 메서드
  * 	매개변수 : ball, strike, judge
  * 	리턴타입 : void
  * 	매서드명 : playGame
  * */
-	public static void playGame(int ball, int strike, int judge) {
-		
-		switch(judge) {
-		
-		case 0:			System.out.println("OUT!");break;
-		case 1: System.out.println("Game set! Player change"); break;
-		case 2: System.out.println(ball +"Ball, " + strike + "Strike."); break;
-		
+	public static void playGame(int ball, int strike,int size) {
+		int judge = 0;
+		if(ball==0 && strike==0) {
+			judge=0; System.out.println("OUT!");
 		}
+		else if(strike==size) {
+			judge=1; System.out.println("Game set! Player change"); 
+		}
+		else {
+		judge=2; System.out.println(ball +"Ball, " + strike + "Strike."); }
 	}
+		
+		
+	
 
 	/**
 	 * 기능 : Scanner가 주어지면 정수를 size개 만큼 입력받아 배열에 저장하고,
