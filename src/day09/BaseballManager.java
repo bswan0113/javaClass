@@ -1,22 +1,69 @@
-package day08;
+package day09;
 
 import java.util.Scanner;
 
-public class BaseballT {
 
+public class BaseballManager {
+	/*숫자 야구게임을 플레이 한 후, 기록을 저장 하는 프로그램
+	 * 
+	 * 1. 플레이
+	 * 2. 기록확인
+	 * 3. 종료
+	 * 메뉴선택 : 2
+	 * 1. 홍길동 2회
+	 * 2. 임꺽정 3회
+	 * 3. 김선달 3회
+	 * 4. 이정재 4회
+	 * 
+	 * */
 	public static void main(String[] args) {
+		int menu;
+		
+		Player []player = new Player[30]; 
+	
 		
 	
+		do {
+			//메뉴를 출력			
+			printMenu();			
+			//메뉴 선택(입력)
+			menu=selectMenu();			
+			//선택한 메뉴에 맞는 기능 실행
+			runMenu(menu);
+		}while(menu!=3);
+		
+	System.out.println("See you again, Guys~!");
+	
+
+	}
+	//메뉴출력
+	public static void printMenu() {
+		System.out.println("Baseball PRO 2022 Seanson Final");
+		System.out.println("1. PLAYGAME");
+		System.out.println("2. RECORD");
+		System.out.println("3. QUIT");
+		
+	}
+	
+	/**콘솔에서 입력받은 정수(메뉴)를 알려주는 메소드
+	 * @return 입력받은 정수(메뉴)
+	 * */
+	public static int selectMenu() {
+			Scanner scan = new Scanner(System.in);
+					
+			return scan.nextInt();
+		}
+	public static void runMenu(int menu) {
+		
+		switch(menu) {
+		
+		case 1:		
+		
 		int min = 1, max=9, size = 3;
 		int[]com = createRandomArray(min, max, size);
 		
-		printArray(com);
-		
-		
-		Scanner scan = new Scanner(System.in);
-		
-		
-		
+		printArray(com);	
+		Scanner scan = new Scanner(System.in);		
 		int strike, ball;
 		do {
 			System.out.print("\n입력 : ");
@@ -24,12 +71,34 @@ public class BaseballT {
 		strike = getStrike(com, user);
 		ball = getBall(com, user);
 		printGame(strike, ball);
+	
 		
 		}while(strike<3);
-		System.out.println("게임 종료");
-		scan.close();
-
+		System.out.println("Congration, You defeated!");
+		
+		
+			//야구 게임을 플레이
+			
+		case 2:
+			//야구 게임에서의 기록을 출력
+			break;
+		case 3: 
+			// 게임을 종료
+		break;
+		
+		}
+		
+		
+		
 	}
+//	/**야구게임의 기록을 저장하는 메소드
+//	 * 
+//	 * */
+//	public static int recordGame(Player[] player) {
+//		int index;
+//		return player[index].updatePlayNum(count);
+//		
+//	}
 	/**기능 :strike와 ball의 개수가 주어지면 콘솔에 결과를 출력
 	 * @param strike 스트라이크의 개수
 	 * @param ball 볼의 개수
@@ -161,3 +230,4 @@ public class BaseballT {
 			return countarray;
 		}
 }
+

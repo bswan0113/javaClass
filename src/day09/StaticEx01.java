@@ -41,6 +41,6 @@ class KiaCar{
 	}
 	public static void printLogo() {
 		System.out.print(logo);
-		
+		//System.out.println(" : " + name); static 필드가 아니기에 에러발생
 	}
 }
