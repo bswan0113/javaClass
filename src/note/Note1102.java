@@ -1,4 +1,4 @@
-package mine;
+package note;
 
 public class Note1102 {
 /*

@@ -1,6 +1,6 @@
-package mine;
+package note;
 
-public class Note1101Object {
+public class Note1101 {
 /* 객체지향언어의 특징
  *  1. 캡슐화(Encapsulation)
  *  2. 상속(Inheritance) + 추상화(Abstraction)

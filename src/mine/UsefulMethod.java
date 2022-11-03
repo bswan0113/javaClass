@@ -1,5 +1,7 @@
 package mine;
 
+import java.util.Scanner;
+
 public class UsefulMethod {
 
 	//주어진 범위의 시그마 계산
@@ -52,4 +54,24 @@ public class UsefulMethod {
 	return false;
 													}
 
+	/**
+	 * 기능 : Scanner가 주어지면 정수를 size개 만큼 입력받아 배열에 저장하고,
+	 * 			저장된 배열을 돌려주는 메소드
+	 * 매개변수 : Scanner, size => scanner scan, int size;
+	 * 리턴타입 : 정수 배열 => int []
+	 * 매소드명 : scanArray
+	 * @param scan Scanner
+	 * @param size 입력받을 정수의 개수
+	 * @return 입력받은 값들이 저장된 배열
+	 * */
+	public static int[] scanArray(Scanner scan, int size) {
+		if(size <=0) {
+			return null;
+		}
+		int [] arr = new int[size];
+		for(int i = 0; i< size; i++) {
+			arr[i] = scan.nextInt();
+		}
+		return arr;
+	}
 }
