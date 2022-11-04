@@ -6,11 +6,12 @@ public class Player {
 	public void print() {
 		System.out.println(Player +": " + playNum);
 	}
-	public void updatePlayNum(int playNum) {
-		this.playNum=playNum;
+	public Player(String player, int playNum) {
+		Player = player;
+		this.playNum = playNum;
 	}
-	public Player() {
-		this.Player=" ";
-		this.playNum=0;
+
+	public int getPlayNum() {
+		return playNum;
 	}
 }

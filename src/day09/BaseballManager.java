@@ -2,6 +2,8 @@ package day09;
 
 import java.util.Scanner;
 
+import day10.Record;
+
 
 public class BaseballManager {
 	/*숫자 야구게임을 플레이 한 후, 기록을 저장 하는 프로그램
@@ -17,19 +19,15 @@ public class BaseballManager {
 	 * 
 	 * */
 	public static void main(String[] args) {
-		int menu;
-		
-		Player []player = new Player[30]; 
-	
-		
-	
+		int menu;		
+		Record [] records = new Record [10]; 	
 		do {
 			//메뉴를 출력			
 			printMenu();			
 			//메뉴 선택(입력)
 			menu=selectMenu();			
 			//선택한 메뉴에 맞는 기능 실행
-			runMenu(menu);
+			runMenu(menu,records);
 		}while(menu!=3);
 		
 	System.out.println("See you again, Guys~!");
@@ -53,8 +51,9 @@ public class BaseballManager {
 					
 			return scan.nextInt();
 		}
-	public static void runMenu(int menu) {
+	public static void runMenu(int menu, Record[] records) {
 		
+		int tryCount=0;
 		switch(menu) {
 		
 		case 1:		
@@ -66,31 +65,86 @@ public class BaseballManager {
 		Scanner scan = new Scanner(System.in);		
 		int strike, ball;
 		do {
-			System.out.print("\n입력 : ");
+			System.out.print("\nHIT THE BAT! :  ");
 		int []user = scanArray(scan, size);
 		strike = getStrike(com, user);
 		ball = getBall(com, user);
 		printGame(strike, ball);
+		tryCount++;
+		int maxRecordCount = getMaxRecordCount(records);
+		int maxRecordRank = getMaxRecordRank(records);
+		if(maxRecordCount>tryCount || maxRecordRank < 5) {
+			addRecord(records, tryCount);
+		}
+		}while(strike<3);
+		
+		System.out.println("☆★☆★☆★☆★☆★☆★☆★☆★☆★☆☆★");
+		System.out.println("Congration, You defeated!");
+		System.out.println("trycount : " + tryCount + " times!");
+		System.out.println("☆★☆★☆★☆★☆★☆★☆★☆★☆★☆☆★");
 	
 		
-		}while(strike<3);
-		System.out.println("Congration, You defeated!");
-		
-		
 			//야구 게임을 플레이
-			
+			break;
 		case 2:
+			printRecords(records);
 			//야구 게임에서의 기록을 출력
 			break;
 		case 3: 
 			// 게임을 종료
 		break;
-		
+		default:
 		}
+		}
+	
 		
-		
-		
-	}
+		private static void printRecords(Record[] records) {
+			for(int i=0; i<records.length; i++) {
+				System.out.print("RANK "+i);
+				if(records[i] != null) {
+					records[i].print();
+				}
+				else {
+				System.out.println();}
+				}
+			
+		}
+		private static void addRecord(Record[] records, int tryCount) {
+			Scanner scan = new Scanner(System.in);
+					System.out.println("Input your name! : ");
+					String name = scan.next();
+					Record r = new Record(tryCount, name);
+					int index = 0;
+					for(Record record : records) {
+						if(record != null && record.getCount() < tryCount) {
+							index++;
+						}
+					}
+			for(int i = records.length-1; i>index; i--) {
+				records[i] = records[i-1];
+			}
+			records[index] = r;
+		}
+		private static int getMaxRecordRank(Record[] records) {
+			int rank = 0;
+			for(Record record : records) {
+				if(record != null) {
+					rank++;
+				}
+			
+		}return rank;
+		}
+		private static int getMaxRecordCount(Record[] records) {
+			int count = 99999999;
+			for(Record record : records) {
+				if(record != null) {
+					record.getCount();
+				}
+			}
+			return count;
+		}	
+	
+
 //	/**야구게임의 기록을 저장하는 메소드
 //	 * 
 //	 * */
