@@ -5,7 +5,10 @@ public class Student {
 	private String name;
 
 	
-
+	public void print() {
+		
+	}
+	
 	@Override
 	public String toString() {
 		return "Student [grade=" + grade + ", classNum=" + classNum + ", num=" + num + ", name=" + name + "]";

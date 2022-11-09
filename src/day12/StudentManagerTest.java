@@ -61,10 +61,11 @@ do {
 		
 	}
 	
-	private static void runMenu(int menu, HighStudent []std, int count) {
+	private static int runMenu(int menu, HighStudent []std, int count) {
 		switch(menu) {
 		case 1: setStdProfile(std, count);
-			break;
+				count++;
+				return count;
 		case 2:	System.out.println("학생성적 추가 프로그램 생성");
 			break;
 		case 3: printStdProfile(std);
@@ -73,16 +74,20 @@ do {
 			break;
 		default:
 			System.out.println("잘못된 접근입니다.");
-		}
+		}return count;
 		
 	}
 
 	private static void printStdProfile(HighStudent[] std) {
-		if(std!=null) {
+		
 		
 		for(int i=0; i<std.length; i++) {
-		System.out.println(std[i]);
-		}}
+			
+			
+			System.out.println(std[i]);}
+			
+		
+		
 	}
 
 	private static HighStudent setStdProfile(HighStudent []std, int count) {
@@ -95,15 +100,14 @@ do {
 		System.out.print("입력을 원하는 학생의 반을 입력하세요. : ");
 		int classNum = scan.nextInt();
 		System.out.println();
-
 		System.out.print("입력을 원하는 학생의 번호를 입력하세요. : ");
 		int stdNum = scan.nextInt();
 		System.out.println();
-
 		System.out.print("입력을 원하는 학생의 이름을 입력하세요. : ");
 		String name = scan.next();
 		System.out.println();
 		return std[count] = new HighStudent(grade, classNum, stdNum, name);
+		
 		
 		
 			
