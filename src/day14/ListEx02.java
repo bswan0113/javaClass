@@ -13,7 +13,8 @@ public class ListEx02 {
 		list.add(0,10);
 		list.remove(1); //remove(n) n번지 삭제
 		list.remove((Integer)10); //remove((class)n); n삭제
-
+		
+		
 		
 		System.out.println(list);
 		System.out.println("1이 있습니까" + list.contains(1));
