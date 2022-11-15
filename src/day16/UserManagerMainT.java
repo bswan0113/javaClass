@@ -45,9 +45,9 @@ public class UserManagerMainT {
 		
 			break;
 		
-		case 3: //changeInfo(list);	
-			Member1 updateTmp = searchMember(list);
-			updateMember(list, updateTmp);
+		case 3: changeInfo(list);	
+		//	Member1 updateTmp = searchMember(list);
+		//	updateMember(list, updateTmp);
 	
 			break;
 		
@@ -135,7 +135,7 @@ public class UserManagerMainT {
 		//가져온 회원 정보의 비밀번호와 입력한 비밀번호를 비교하여 같으면 회원정보를 보여주고 다르면 종료
 		return tmp;
 	}
-/*	public static void changeInfo(ArrayList<Member1> list) {
+	public static void changeInfo(ArrayList<Member1> list) {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("수정할 회원의 ID를 입력하시오.");
 		String id = scan.next();
@@ -204,7 +204,7 @@ public class UserManagerMainT {
 			//항목을 수정할 내용을 입력받음
 			//수정
 
-	} */
+	} 
 	public static boolean updateMember(ArrayList<Member1> list, Member1 updateTmp) {
 		Scanner scan = new Scanner(System.in);
 		if(updateTmp==null) {
