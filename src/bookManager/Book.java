@@ -21,9 +21,6 @@ public class Book {
 		ISBN=count;
 	}
 	
-	public Book(String author) {
-		this.author=author;
-	}
 
 
 	public Book(int bookname2) {

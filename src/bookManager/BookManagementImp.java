@@ -2,6 +2,8 @@ package bookManager;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 public class BookManagementImp implements BookManagement {
 
@@ -43,11 +45,11 @@ public class BookManagementImp implements BookManagement {
 		
 		switch(menu) {
 		
-		case 1://inquireBook(list,scan);
+		case 1:inquireBook(list,scan);
 			break;
 		case 2:inquireAuthor(list,scan); 
 			break;
-		case 3://inquirePublisher(list,scan);
+		case 3:inquirePublisher(list,scan);
 			break;
 		case 4:inquireCateogory(list,scan);
 			break;
@@ -68,9 +70,8 @@ public class BookManagementImp implements BookManagement {
 
 	@Override
 	public void addBook(ArrayList<Book> list, Scanner scan) {
-		
-		System.out.print("추가하려는 도서명을 입력해주세요. : ");
 		scan.nextLine();
+		System.out.print("추가하려는 도서명을 입력해주세요. : ");	
 		String bookName= scan.nextLine();
 		System.out.print(bookName+ "의 저자를 입력해주세요. : ");
 		String author = scan.nextLine();
@@ -88,58 +89,51 @@ public class BookManagementImp implements BookManagement {
 	
 	
 	}
+	@Override
+	public void inquireAuthor(ArrayList<Book> list, Scanner scan) {
+		System.out.println("검색을 원하는 저자명을 입력해주세요.");
+		String author = scan.nextLine();				
+		for(int i=0; i<list.size();i++) 
+			{if(list.get(i).getAuthor().contains(author.trim())) 
+				System.out.println(list.get(i));}
+				
+		
+
+			}
+		
+		
+	
 
 	@Override
 	public void inquireBook(ArrayList<Book> list, Scanner scan) {
 		System.out.println("검색을 원하는 도서명을 입력해주세요.");
-		String bookname = scan.next();
-		Book tmp =  new Book(bookname);
-		for(int i=0; i<list.size();i++) {
-			if(list.get(i).getBookName().equals(tmp.getBookName())) {
-				System.out.println(list.get(i));
-			}
-		}
-	
-	
-		
-		
-	}
-
-	@Override
-	public void inquireAuthor(ArrayList<Book> list, Scanner scan) {
-		System.out.println("검색을 원하는 저자명을 입력해주세요.");
-		String author = scan.next();
-		Book tmp =  new Book(author);
-		for(int i=0; i<list.size();i++) {
-			if(list.get(i).getAuthor().equals(tmp.getAuthor())) {
-				System.out.println(list.get(i));
-			}
-		}
-			
+		String book = scan.nextLine();				
+		for(int i=0; i<list.size();i++) 
+			{if(list.get(i).getBookName().contains(book.trim())) 
+				System.out.println(list.get(i));}		
 	}
 
 	@Override
 	public void inquirePublisher(ArrayList<Book> list, Scanner scan) {
 		System.out.println("검색을 원하는 출판사명을 입력해주세요.");
-		String bookname = scan.next();
-		Book tmp =  new Book(bookname);
-		for(int i=0; i<list.size();i++) {
-			if(list.get(i).getPublisher().equals(tmp.getPublisher())) {
-				System.out.println(list.get(i));
-			}
-		}		
+		String pub = scan.nextLine();				
+		for(int i=0; i<list.size();i++) 
+			{if(list.get(i).getPublisher().contains(pub.trim())) 
+				System.out.println(list.get(i));}		
 	}
 
-
+	@Override
 	public void inquireCateogory(ArrayList<Book> list, Scanner scan) {
 		System.out.println("검색을 원하는 분류를 입력해주세요.");
-		int bookname = scan.nextInt();
-		Book tmp =  new Book(bookname);
-		for(int i=0; i<list.size();i++) {
-			System.out.println(list.get(i));
-		}		
+		int cat = scan.nextInt();
+		Book tmp = new Book(cat);
+		for(int i=0; i<list.size();i++){
+			if( list.get(i).getCategory().equals(tmp.getCategory())) {
+				System.out.println(list.get(i));
+			}
+		}
+		
 	}
-
 
 
 	
