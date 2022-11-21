@@ -40,7 +40,7 @@ public class PhoneListSystem {
 			break;
 		case 3:
 			break;
-		case 4:
+		case 4: searchNum(list);
 			break;
 		case 5:
 			break;
@@ -48,6 +48,28 @@ public class PhoneListSystem {
 		}
 		
 		
+	}
+
+	private void searchNum(ArrayList<PhoneList> list) {
+		System.out.println("검색할 이름을 입력해주세요.");
+		String find = scan.nextLine();
+		ArrayList<Integer> a = findIndex(list, find);
+		for(int i=0; i<a.size();i++) {
+				System.out.println(list.get(a.get(i)));
+		}
+		
+	}
+
+	private ArrayList<Integer> findIndex(ArrayList<PhoneList> list, String find) {
+		ArrayList <Integer> index = new ArrayList<Integer>();
+		
+		for(int i=0; i<list.size(); i++) {
+			if(list.get(i).getLastName().contains(find)) {
+				index.add(i);
+			}
+		}
+		
+		return index;
 	}
 
 	private void addList(ArrayList<PhoneList> list) {
