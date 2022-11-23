@@ -1,6 +1,7 @@
 package attendant;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class AttendanceMain {
@@ -14,12 +15,16 @@ public class AttendanceMain {
 		Attendance attendance = new Attendance();
 		
 		do {
+			try {
 			printMenu();
 			menu=scan.nextInt();
 			scan.nextLine();
 			printbar();
 			runMenu(menu,attendance);
-			
+			}catch(Exception e) {
+				System.out.println(e.getMessage());
+		
+			}
 		}while(menu!=3);
 		printStr("시스템을 종료합니다.");
 
@@ -80,13 +85,14 @@ private static void printSubMenu(int menu) {
 		case 1:
 			managementStudents(stds);
 			break;
-		case 2://managementLogs(log,stds);
+		case 2:managementLogs(logs,stds);
 			break;
 		case 3:
 			break;			
 		default: System.out.println("잘못된 메뉴입니다.");
 		}
 	}
+
 
 	private static void managementStudents(ArrayList<Student> stds) {
 		printSubMenu(1);
@@ -97,12 +103,12 @@ private static void printSubMenu(int menu) {
 		case 2:updateStudent(stds);break;
 		case 3: deleteStudent(stds);break;
 		case 4:printStr("네 그렇게 할게요.");return;
-		default: printStr("잘못된 접근입니다.");}
+		default: printStr("잘못된 접근입니다.");	managementStudents(stds);}
 		
 	}
 	private static void deleteStudent(ArrayList<Student> stds) {
 		if(stds==null)
-			throw new RuntimeException("배치기 : 그래 헤쳐나간다 나는 세상의 곡소리에 나의 이 목소리로 세상을 바쳐");
+			throw new RuntimeException("배치기 : 그래 헤쳐나간다 나는 세상의 곡소리에 나의 이 목소리로 가슴을 적셔");
 			
 			System.out.print("이름을 입력해 Guy : ");
 			String name = scan.nextLine();
@@ -162,4 +168,138 @@ private static void printSubMenu(int menu) {
 
 		System.out.println("너의 이름이 긴 밤을 지나 찰나가 영원이 될 때");
 	stds.add(std);}
+	private static void managementLogs(ArrayList<Log> logs, ArrayList<Student> stds) {
+		printSubMenu(2);
+		int subMenu = scan.nextInt();
+		scan.nextLine();
+		switch(subMenu) {
+		case 1: checkLog(logs, stds); sortLogs(logs);break;
+		case 2:printLogsByStudent(logs);
+			break;
+		case 3:printLogsByDate(logs,stds);break;
+		case 4:updateLogs(logs);break;
+		case 5:deleteLogs(logs);break;
+		case 6:	printStr("네 뒤로 돌아가도록 할게요.");return;
+			default:printStr("잘못된 접근으로 사료가 돼요."); managementLogs(logs, stds) ;
+		}
+	}
+
+	private static void deleteLogs(ArrayList<Log> logs) {
+		if(logs==null || logs.size()==0)return;
+		System.out.println("수정할 날짜를 입력해주시겠어요?");
+		String date = scan.nextLine();
+		if(!checkLogDate(logs,date)) {
+			printStr("등록되어있지 않은 일자네요. 다시 한번 확인을 부탁드려요.");
+			return;
+		}
+		for(int i=0; i< logs.size(); i++) {
+			if(logs.get(i).getDate().equals(date)) {
+				logs.remove(i);
+				System.out.println("삭제를 완료했어요.");return;
+			}
+		}
+	}
+
+	private static void updateLogs(ArrayList<Log> logs) {
+		if(logs==null || logs.size()==0)return;
+		System.out.println("수정할 날짜를 입력해주시겠어요?");
+		String date = scan.nextLine();
+		if(!checkLogDate(logs,date)) {
+			printStr("등록되어있지 않은 일자네요. 다시 한번 확인을 부탁드려요.");
+			return;
+		}
+		System.out.println(date + "의 출결내역이에요.");
+		for(int i=0; i<logs.size();i++) {
+			if(logs.get(i).getDate().equals(date)) {
+				System.out.println(logs.get(i));
+			}
+			
+		}
+		System.out.println("어떤 학생을 수정하시겠어요?");
+		String name = scan.nextLine();
+		System.out.println(name + "의 생년월일을 입력해주시겠어요?");
+		String birth = scan.nextLine();
+		System.out.println(name+"의 출결을 어떻게 변경하실건가요?");
+		String state = scan.nextLine();
+		printStr();
+		for(Log log : logs) {
+			if(log.getDate().equals(date)) {
+				for(StudentLog slog : log.getSLogs()) {
+					String tmpName = slog.getStd().getName();
+					String tmpBirth = slog.getStd().getBirthday();
+					if(tmpName.equals(name) && tmpBirth.equals(birth)) {
+						slog.setState(state);
+					}
+				}printStr("수정이 완료되었어요."); return;
+			}
+		}
+	
+	}
+
+	private static void printLogsByDate(ArrayList<Log> logs, ArrayList<Student> stds) {
+		if(logs==null || logs.size()==0)return;
+		System.out.println("검색할 날짜를 입력해주시겠어요?");
+		String date = scan.nextLine();
+		printStr();
+		for(Log log : logs) {
+			if(log.getDate().equals(date)) {
+				for(StudentLog slog : log.getSLogs()) {
+					String name = slog.getStd().getName();
+					String birth = slog.getStd().getBirthday();
+					System.out.println(name + " " + birth + " " + slog.getState());
+				}
+			}
+		}
+
+			}
+		
+	
+
+	private static void printLogsByStudent(ArrayList<Log> logs) {
+		if(logs==null || logs.size()==0)return;
+		System.out.println("검색할 이름을 입력해주시겠어요?");
+		String name = scan.nextLine();
+		for(Log log : logs) {
+			for(StudentLog slog : log.getSLogs()) {
+				if(slog.getStd().getName().equals(name)) {
+					System.out.println(log.getDate()+" : " + slog.getState());
+				}
+			}
+		}
+		
+	}
+
+	private static void sortLogs(ArrayList<Log> logs) {
+		if(logs ==null||logs.size()==0) {System.out.println("선행할 작업이 있을거에요!");return;}
+		Collections.sort(logs, (o1,o2)->o1.getDate().compareTo(o2.getDate()));
+		
+	}
+
+	private static void checkLog(ArrayList<Log> logs, ArrayList<Student> stds) {
+		printStr("오늘의 날짜를 입력해주세요.");
+		String today = scan.nextLine();
+		if(checkLogDate(logs,today)){System.out.println("이미 등록된 날짜라고 생각이 되요.");return;}
+		System.out.println("출석여부를 입력해주세요.");
+		printStr("결석 : X, 출석 :O , 지각 :/, 조퇴 : \\");
+		ArrayList<StudentLog> a = new ArrayList<StudentLog>();
+		for(int i=0; i<stds.size();i++) {
+			System.out.print(stds.get(i)+" : ");
+			String stdToday = scan.nextLine();
+			a.add(new StudentLog(stds.get(i),stdToday));
+			
+		}
+		logs.add(new Log(a,today));
+		System.out.println(logs);
+		
+	}
+
+	private static boolean checkLogDate(ArrayList<Log> logs, String today) {
+		if(logs==null||today==null) throw new RuntimeException("일지 또는 입력된 날짜가 존재하지 않아요.");
+		if(logs.size()==0) {return false;}
+		for(int i=0; i<logs.size();i++) {
+			if(logs.get(i).getDate().equals(today))return true;
+		}
+		
+		return false;
+	}
 }

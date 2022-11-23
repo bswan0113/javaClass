@@ -17,5 +17,13 @@ public class StudentLog {
 		this.std= new Student(std);
 		this.state=state;
 	}
+
+	public StudentLog() {
+	}
+
+	@Override
+	public String toString() {
+		return std + " : " + state+"\n";
+	}
 	
 }

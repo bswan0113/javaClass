@@ -121,7 +121,6 @@ private static void runAttendMenu(ArrayList<Std> std) {
 		case 5: return;
 		default: System.out.println("잘못된 입력입니다.");
 			
-		
 		}
 	}
 

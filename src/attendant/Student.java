@@ -16,4 +16,11 @@ public class Student {
 		this(std.name, std.birthday);
 		
 	}
+
+	@Override
+	public String toString() {
+		return name;
+	
+	}
+	
 }
