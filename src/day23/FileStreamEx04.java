@@ -14,8 +14,8 @@ public class FileStreamEx04 {
 
 	public static void main(String[] args) {
 		FileInputStream fis = null;
-		FileOutputStream fos = null;
 		ObjectInputStream ois = null;
+		FileOutputStream fos = null;
 		ObjectOutputStream oos = null;
 
 		try {
