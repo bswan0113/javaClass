@@ -3,6 +3,7 @@ package bookManager;
 import lombok.Data;
 
 @Data
+
 public class Book {
 	private String bookName, author, publisher;
 	private int price;
