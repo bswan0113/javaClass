@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class Board {
 
-	private String title, content,wirter, category;
+	private String title,content,wirter,category;
 	private Date regDate, upDate;
 	private int views;
 	private int num;

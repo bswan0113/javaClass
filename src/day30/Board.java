@@ -1,5 +1,6 @@
 package day30;
 
+
 import lombok.Data;
 
 /*
@@ -18,8 +19,7 @@ import lombok.Data;
 public class Board {
 	private int boardNum;
 	private String author, title, contents;
-	static int count=1;
-	
+
 	@Override
 	public String toString() {
 		return "00000"+boardNum +". 제목 : "+ title +" 작성자 : "+author;
@@ -52,12 +52,11 @@ public class Board {
 		return result;
 	}
 
-	public Board(String title, String contents, String author) {
-		this.boardNum = count;
+	public Board(int boardNum, String title, String contents, String author) {
+		this.boardNum = boardNum;
 		this.author = author;
 		this.title = title;
 		this.contents = contents;
-		count++;
 		
 	}
 
